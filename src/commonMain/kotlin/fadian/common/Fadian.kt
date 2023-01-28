@@ -1,7 +1,9 @@
 package fadian.common
 
-class Greeting {
-    fun greeting(): String {
+class Fadian {
+
+    fun fadian(): String {
         return "Hello"
     }
+
 }
