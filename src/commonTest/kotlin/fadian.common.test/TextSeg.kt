@@ -1,5 +1,7 @@
 package fadian.common.test
 
+import fadian.common.textSeg.ClassifiedTextSeg
+import fadian.common.textSeg.NopSeg
 import fadian.common.textSeg.PreferSeg
 import fadian.common.textSeg.dict.BackwardTextSeg
 import fadian.common.textSeg.dict.ForwardTextSeg
@@ -51,6 +53,21 @@ class PreferSegTest : StringSpec({
         PreferSeg(setOf(ForwardTextSeg(dict), BackwardTextSeg(dict))).segment("ABCD") shouldBe listOf(
             "A",
             "BCD"
+        )
+    }
+})
+
+class ClassifiedTextSegTest : StringSpec({
+    "classified test" {
+        ClassifiedTextSeg(emptyMap(), NopSeg()).segment("ABC123--*/#\$%^&*()123456你好 世界!!！！") shouldBe listOf(
+            "ABC",
+            "123",
+            "--*/#\$%^&*()",
+            "123456",
+            "你好",
+            " ",
+            "世界",
+            "!!！！"
         )
     }
 })
